@@ -3,8 +3,13 @@ $(document).ready(function(){
     const form = $('#formBusqueda');
     const resultado = $('#resultado');
     let heroe = {};
+    // cambiar a la funcion
+    const img = $('.img-superheroe');
+    const cabecera = $('#cabecera');
+    const lista = $('#lista')
 
-
+    
+    
     form.on('submit', function(e){
         e.preventDefault();
         const numeroHeroe = parseInt(input.val().trim())
@@ -46,32 +51,56 @@ $(document).ready(function(){
     }
     
     const imprimirHeroe = (heroe) =>{
+        // resultado.append(`<h2>SuperHero Encontrado</h2>`)
+        // resultado.append(`<article class="card">
+        //                     <div class="d-flex">
+        //                         <div class="img-superheroe">
+        //                             // aqui va img
+        //                         </div>
+        //                         <div class="container">
+        //                             <div class="card-text mt-3" id="cabecera">
+        //                                 // aqui va un h3 con el nombre
+        //                                 // aqui va un p con conexiones
+        //                         </div>
+        //                             <div class="card-body">
+        //                                 <ul class="list-group list-group-flush" id="lista">
+        //                                     //aqui va un li con un <i publicado por:
+        //                                     //aqui va un li con un <i ocupacion:
+        //                                     //aqui va un li con un <i primera aparicion:
+        //                                     //aqui va un li con un <i altura:
+        //                                     //aqui va un li con un <i alianzas:
+        //                                 </ul>
+        //                             </div>
+        //                         </div>
+        //                     </div>
+        //                 </article>`)
+
         Object.keys(heroe).forEach( llave =>{
             switch (llave) {
-                case 'nombre':
-                    resultado.append(`<h2>${heroe[llave]}</h2>`)
-                    break;
-                case 'conexiones':
-                    console.log(llave);
-                    break;
-                case 'autor':
-                    console.log(llave);
-                    break;
-                case 'occupacion':
-                    console.log(llave);
-                    break;
-                case 'primeraAparicion':
-                    console.log(llave);
-                    break;
-                case 'altura':
-                    console.log(llave);
-                    break;
-                case 'alianzas':
-                    console.log(llave);
-                    break;
-                case 'img':
-                    console.log(llave);
-                    break;
+                    case 'nombre':
+                        cabecera.append(`<h3>Nombre: ${heroe[llave]}`)
+                        break;
+                    case 'conexiones':
+                        cabecera.append(`<p>Conexiones: ${heroe[llave]}</p>`)
+                        break;
+                    case 'autor':
+                        lista.append(`<li class="list-group-item"><i>Publicado por: </i>${heroe[llave]}</li>`)
+                        break;
+                    case 'occupacion':
+                        lista.append(`<li class="list-group-item"><i>Ocupación: </i>${heroe[llave]}</li>`)
+                        break;
+                    case 'primeraAparicion':
+                        lista.append(`<li class="list-group-item"><i>Primera Aparición: </i${heroe[llave]}</li>`)
+                        break;
+                    case 'altura':
+                        lista.append(`<li class="list-group-item"><i>Altura: </i>${heroe[llave][0]} - ${heroe[llave][1]}</li>`)
+                        break;
+                    case 'alianzas':
+                        lista.append(`<li class="list-group-item"><i>Alianzas: </i> ${heroe[llave]}</li>`)
+                        break;
+                    case 'img':
+                        img.append(`<img src="${heroe[llave]}" alt="heroe">`)
+                        break;
             }
         })
     }
