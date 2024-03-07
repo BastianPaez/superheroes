@@ -26,19 +26,19 @@
                 <form id="formBusqueda">
                     <label for="superHeroInput" class="form-label">Ingresa el número del SuperHero a buscar</label>
                     <input type="number" class="form-control input-buscador" id="superHeroInput"
-                        placeholder="Ingrese número de Super Héroe" value="213">
+                        placeholder="Ingrese número de Super Héroe" value="0">
                     <div class="valid-feedback mb-2">
                         Héroe encontrado! 😎
                     </div>
                     <div class="invalid-feedback mb-2">
-                        Ingrese número válido
+                        ❌ Ingrese número válido del 1 al 731!! ❌
                     </div>
                     <button type="submit" class="btn btn-primary mt-3" id="btnBuscar">Buscar</button>
                 </form>
             </div>
         </section>
 
-        <section id="resultado" class="visually-hidden">
+        <section id="resultado">
 
         </section>
     </main>
@@ -47,42 +47,9 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 
 </html>
 
-<!-- 
-<section id="resultado">
-    <h2>SuperHero Encontrado</h2>
-    <article class="card">
-        <div class="d-flex">
-            <div class="img-superheroe">
-                <img src="assets/img/835.jpg" alt="superheroe" >
-            </div>
-            <div class="container">
-                <div class="card-text mt-3">
-                    <h3>Nombre: Deadpool</h3>
-                    <p>Conexiones: Thunderbolts (Strike Team), shares body with Agent Preston; formerly X-Force,
-                        Deadpool Corps, Agency X, S.H.I.E.L.D.; Code Red, Six Pack,
-                        One World Church, DP Inc., Weapon X, Weapon Plus, Heroes for Hire, Secret Defenders,
-                        Frightful Four, Team Deadpool, L</p>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i>Publicado por: </i>Evil Deadpool</li>
-                        <li class="list-group-item"><i>Ocupación: </i>Mercenary; former enforcer, government
-                            operative, sumo
-                            wrestler, soldier, assassin, anti-hero, others</li>
-                        <li class="list-group-item"><i>Primera Aparición: </i>New Mutants #98 (February, 1991)
-                        </li>
-                        <li class="list-group-item"><i>Altura: </i> 6'2 - 188cm.</li>
-                        <li class="list-group-item"><i>Alianzas: </i> Wade Wilson, Jack,"Chiyonosake (\"the Wolf
-                            of the Rice
-                            Wine\")","Rhodes", "Corpus", "Lopez", "Hobgoblin", "Thom Cruz", "Peter Parker"</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </article>
-</section> -->

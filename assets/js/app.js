@@ -6,20 +6,22 @@ $(document).ready(function () {
     let heroe = {};
 
 
-
     form.on('submit', function (e) {
         e.preventDefault();
         const numeroHeroe = parseInt(input.val().trim())
-        if (numeroHeroe > 0) {
+        if (numeroHeroe <= 0 || numeroHeroe > 731) {
+            resultado.children().remove();
+            heroe = {}
+            inputInvalido()
+        } else {
             inputValido()
+            resultado.children().remove();
             getSuperHeroe(numeroHeroe);
             spinner();
             setTimeout(() => {
                 console.log(heroe)
                 imprimirHeroe(heroe);
-            }, 5000);
-        } else {
-            inputInvalido()
+            }, 3000);
         }
     })
 
@@ -36,7 +38,6 @@ $(document).ready(function () {
         })
     }
     const agregarHeroe = (response) => {
-
         heroe = {
             nombre: response.name,
             conexiones: response.connections['group-affiliation'],
@@ -45,17 +46,44 @@ $(document).ready(function () {
             primeraAparicion: response.biography['first-appearance'],
             altura: response.appearance.height,
             alianzas: response.biography.aliases,
-            img: response.image.url
+            img: response.image.url,
+            stats : response.powerstats
         }
     }
 
     const imprimirHeroe = (heroe) => {
         containerHero();
+
+        resultado.removeClass('visually-hidden')
+        imprimirDatos(heroe);
+        imprimirGrafico(heroe);
+    }
+
+    const containerHero = () => {
+        resultado.append(`<h2>SuperHero Encontrado</h2>
+            <article class="card">
+            <div class="d-flex">
+            <div class="img-superheroe">
+            </div>
+            <div class="container">
+            <div class="card-text mt-3" id="cabecera">
+            </div>
+            <div class="card-body">
+            <ul class="list-group list-group-flush" id="lista">
+            </ul>
+            </div>
+            </div>
+            </div>
+            </article>
+            <article>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            </article>`)
+    }
+
+    const imprimirDatos = (heroe) =>{
         const img = $('.img-superheroe');
         const cabecera = $('#cabecera');
         const lista = $('#lista')
-
-        resultado.removeClass('visually-hidden')
         Object.keys(heroe).forEach( llave =>{
             switch (llave) {
                 case 'nombre':
@@ -84,29 +112,37 @@ $(document).ready(function () {
                             break;
                         default:
                             console.log('ola')
-
-                }
+                        }
         })
-
     }
-
-    const containerHero = () => {
-        resultado.append(`  <h2>SuperHero Encontrado</h2>
-            <article class="card">
-            <div class="d-flex">
-            <div class="img-superheroe">
-            </div>
-            <div class="container">
-            <div class="card-text mt-3" id="cabecera">
-            </div>
-            <div class="card-body">
-            <ul class="list-group list-group-flush" id="lista">
-            </ul>
-            </div>
-            </div>
-            </div>
-            </article>`)
-
+    const imprimirGrafico = (heroe) =>{
+        const grafico = $('#chartContainer')
+        const statsKeys = Object.keys(heroe.stats);
+        console.log(statsKeys)
+        const options = {
+            title: {
+                text: `Estadisticas de Poder para ${heroe.nombre}`
+            },
+            animationEnabled: true,
+            data: [{
+                type: "pie",
+                startAngle: 40,
+                toolTipContent: "<b>{label}</b>: {y}%",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 16,
+                indexLabel: "{label} - {y}%",
+                dataPoints: [
+                    { y: heroe.stats.intelligence , label: statsKeys[0] },
+                    { y: heroe.stats.strength     , label: statsKeys[1] },
+                    { y: heroe.stats.speed        , label: statsKeys[2] },
+                    { y: heroe.stats.durability   , label: statsKeys[3] },
+                    { y: heroe.stats.power        , label: statsKeys[4] },
+                    { y: heroe.stats.combat       , label: statsKeys[5] },
+                ]
+            }]
+        };
+        grafico.CanvasJSChart(options);
     }
 
     const spinner = () => {
@@ -117,7 +153,7 @@ $(document).ready(function () {
         </div>`)
         setTimeout(() => {
             $('.spinner').remove();
-        }, 5000);
+        }, 3000);
     }
 
 
@@ -127,7 +163,7 @@ $(document).ready(function () {
     }
     const inputInvalido = () => {
         input.removeClass('is-valid is-invalid');
-        input.addClass('is-valid');
+        input.addClass('is-invalid');
     }
 
 
