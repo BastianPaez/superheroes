@@ -18,7 +18,7 @@
             <p class="text-light fs-4 my-auto">SuperHero</p>
         </div>
     </nav>
-    <main class="container">
+    <main class="container" id="main">
         <section class="my-5">
             <img src="assets/img/sh1.jpg" alt="imagen-superheroe" class="mx-auto d-block img-buscador">
             <div class="text-start buscador">
@@ -26,7 +26,7 @@
                 <form id="formBusqueda">
                     <label for="superHeroInput" class="form-label">Ingresa el número del SuperHero a buscar</label>
                     <input type="number" class="form-control input-buscador" id="superHeroInput"
-                        placeholder="Ingrese número de Super Héroe" value="1">
+                        placeholder="Ingrese número de Super Héroe" value="213">
                     <div class="valid-feedback mb-2">
                         Héroe encontrado! 😎
                     </div>
@@ -38,22 +38,8 @@
             </div>
         </section>
 
-        <section id="resultado">
-            <h2>SuperHero Encontrado</h2>
-            <article class="card">
-                <div class="d-flex">
-                    <div class="img-superheroe">
-                    </div>
-                    <div class="container">
-                        <div class="card-text mt-3" id="cabecera">
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group list-group-flush" id="lista">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        <section id="resultado" class="visually-hidden">
+
         </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
